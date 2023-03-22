@@ -1,0 +1,15 @@
+version: "3.8"
+
+services:
+    redis:
+        container_name: redis-server
+        image: redis:alpine
+        command: redis-server --requirepass ${REDIS_PASS:-redis123}
+        ports:
+            - "6379:6379"
+        volumes:
+            - redis-data:/data
+            - redis-conf:/usr/local/etc/redis/redis.conf
+volumes:
+    redis-data:
+    redis-conf:
